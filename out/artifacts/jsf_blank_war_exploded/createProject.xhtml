@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <title>Create Project</title>
+    <h:outputStylesheet library="css" name="styles.css"/>
+</h:head>
+<h:body>
+    <!-- Include header and navbar components -->
+    <ui:include src="header.xhtml"/>
+    <ui:include src="navbar.xhtml"/>
+
+    <header>
+        <h1>Create Project</h1>
+    </header>
+    <section class="top-section">
+        <div class="basic-info">
+            <h2>Enter Project Details</h2>
+        </div>
+    </section>
+    <section class="bottom-section">
+        <h:form id="createForm">
+            <div class="form-container">
+                <!-- Title Field -->
+                <h:outputLabel for="title" value="Title:" />
+                <h:inputText id="title" value="#{createProjectBean.newProject.title}" required="true">
+                    <f:validateLength minimum="1" />
+                </h:inputText>
+                <h:message for="title" style="color: red;" />
+
+                <!-- Summary Field -->
+                <h:outputLabel for="summary" value="Summary:" />
+                <h:inputTextarea id="summary" value="#{createProjectBean.newProject.summary}" rows="3" required="true">
+                    <f:validateLength minimum="1" />
+                </h:inputTextarea>
+                <h:message for="summary" style="color: red;" />
+
+                <!-- Description Field -->
+                <h:outputLabel for="description" value="Description:" />
+                <h:inputTextarea id="description" value="#{createProjectBean.newProject.description}" rows="5" required="true">
+                    <f:validateLength minimum="1" />
+                </h:inputTextarea>
+                <h:message for="description" style="color: red;" />
+
+                <!-- Keywords Field -->
+                <h:outputLabel for="keywords" value="Keywords:" />
+                <div id="keywords-container">
+                    <h:inputHidden id="keywords" value="#{createProjectBean.newProject.keywords}">
+                        <f:converter converterId="listConverter"/>
+                    </h:inputHidden>
+                    <ul style="list-style-type: none; padding-left: 0;">
+                        <ui:repeat value="#{createProjectBean.newProject.keywords}" var="keyword">
+                            <li style="display: flex; align-items: center; margin-bottom: 5px;">
+                                <span>#{keyword}</span>
+                                <h:commandButton value="x" action="#{createProjectBean.removeKeyword(keyword)}" styleClass="remove-keyword" style="margin-left: 10px; padding: 2px 2px;">
+                                    <f:param name="projectId" value="#{createProjectBean.newProject.id}" />
+                                </h:commandButton>
+                            </li>
+                        </ui:repeat>
+                    </ul>
+                    <div style="display: flex; align-items: center; margin-top: 10px;">
+                        <h:inputText value="#{createProjectBean.newKeyword}" id="new-keyword" placeholder="Add a keyword" style="flex-grow: 1;" />
+                        <h:commandButton value="Add" action="#{createProjectBean.addKeyword}" styleClass="btn" id="addKeywordButton" style="margin-left: 10px; padding: 2px 5px;">
+                            <f:param name="projectId" value="#{createProjectBean.newProject.id}" />
+                        </h:commandButton>
+                    </div>
+                    <h:message for="new-keyword" style="color: red;" />
+                </div>
+                <h:message for="keywords" style="color: red;" />
+
+                <!-- Type Field -->
+                <h:outputLabel for="type" value="Type:" />
+                <h:inputText id="type" value="#{createProjectBean.newProject.type}" required="true">
+                    <f:validateLength minimum="1" />
+                </h:inputText>
+                <h:message for="type" style="color: red;" />
+
+                <!-- Collaborators Field -->
+                <h:outputLabel for="collaborators" value="Collaborators:" />
+                <h:inputTextarea id="collaborators" value="#{createProjectBean.newProject.collaborators}" rows="3" required="true">
+                    <f:converter converterId="listConverter"/>
+                    <f:validateLength minimum="1" />
+                </h:inputTextarea>
+                <h:message for="collaborators" style="color: red;" />
+
+                <!-- Link Field -->
+                <h:outputLabel for="link" value="Link:" />
+                <h:inputText id="link" value="#{createProjectBean.newProject.link}" required="true">
+                    <f:validateLength minimum="1" />
+                    <f:validateRegex pattern="https?://.+" />
+                </h:inputText>
+                <h:message for="link" style="color: red;" />
+
+                <!-- Learned Field -->
+                <h:outputLabel for="learned" value="What I Learned:" />
+                <h:inputTextarea id="learned" value="#{createProjectBean.newProject.learned}" rows="3" required="true">
+                    <f:validateLength minimum="1" />
+                </h:inputTextarea>
+                <h:message for="learned" style="color: red;" />
+
+                <!-- Accomplishments Field -->
+                <h:outputLabel for="accomplishments" value="Accomplishments:" />
+                <h:inputTextarea id="accomplishments" value="#{createProjectBean.newProject.accomplishments}" rows="3" required="true">
+                    <f:validateLength minimum="1" />
+                </h:inputTextarea>
+                <h:message for="accomplishments" style="color: red;" />
+
+                <!-- Enhancements Field -->
+                <h:outputLabel for="enhancements" value="Enhancements:" />
+                <h:inputTextarea id="enhancements" value="#{createProjectBean.newProject.enhancements}" rows="3" required="true">
+                    <f:converter converterId="listConverter"/>
+                    <f:validateLength minimum="1" />
+                </h:inputTextarea>
+                <h:message for="enhancements" style="color: red;" />
+
+                <!-- Download Link Field -->
+                <h:outputLabel for="downloadLink" value="Download Link:" />
+                <h:inputText id="downloadLink" value="#{createProjectBean.newProject.downloadLink}" required="true">
+                    <f:validateLength minimum="1" />
+                    <f:validateRegex pattern="https?://.+" />
+                </h:inputText>
+                <h:message for="downloadLink" style="color: red;" />
+
+                <!-- Save Button -->
+                <h:commandButton value="Save" action="#{createProjectBean.saveNewProject}" styleClass="btn">
+                    <f:param name="projectId" value="#{createProjectBean.newProject.id}" />
+                </h:commandButton>
+            </div>
+            <h:messages globalOnly="true" layout="list" style="color: red;" />
+        </h:form>
+    </section>
+
+    <!-- Include footer component -->
+    <ui:include src="footer.xhtml"/>
+</h:body>
+</html>

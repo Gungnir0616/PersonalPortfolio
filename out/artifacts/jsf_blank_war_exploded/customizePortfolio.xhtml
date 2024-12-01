@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:head>
+    <title>Customize Your Portfolio</title>
+    <h:outputStylesheet library="css" name="styles.css"/>
+</h:head>
+<h:body>
+    <!-- Include header and navbar components -->
+    <ui:include src="header.xhtml"/>
+    <ui:include src="navbar.xhtml"/>
+
+    <!-- Page header -->
+    <header>
+        <h1>Customize Your Portfolio</h1>
+    </header>
+
+    <!-- Main content section for customization form -->
+    <section class="main-content">
+        <h:form>
+            <!-- Input field for font selection -->
+            <h:outputLabel for="font" value="Font:" />
+            <h:inputText id="font" value="#{customizationBean.font}" />
+
+            <!-- Input field for font size selection -->
+            <h:outputLabel for="fontSize" value="Font Size:" />
+            <h:inputText id="fontSize" value="#{customizationBean.fontSize}" />
+
+            <!-- Input field for font color selection -->
+            <h:outputLabel for="fontColor" value="Font Color:" />
+            <h:inputText id="fontColor" value="#{customizationBean.fontColor}" />
+
+            <!-- Input field for background color selection -->
+            <h:outputLabel for="backgroundColor" value="Background Color:" />
+            <h:inputText id="backgroundColor" value="#{customizationBean.backgroundColor}" />
+
+            <!-- Input field for background image URL -->
+            <h:outputLabel for="backgroundImage" value="Background Image URL:" />
+            <h:inputText id="backgroundImage" value="#{customizationBean.backgroundImage}" />
+
+            <!-- Button to save customization settings -->
+            <h:commandButton value="Save" action="#{customizationBean.saveCustomization}" />
+        </h:form>
+    </section>
+
+    <!-- Include footer component -->
+    <ui:include src="footer.xhtml"/>
+</h:body>
+</html>
