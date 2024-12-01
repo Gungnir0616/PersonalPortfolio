@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config
+        xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
+        version="2.2">
+
+  <!--
+    This is the configuration file for JavaServer Faces (JSF).
+    It is used to define managed beans, navigation rules, resource bundles, and more.
+    Initially, it can be empty but having a blank one in the project is useful for later use.
+    Reference: JSF 2 and PrimeFaces tutorial at http://www.coreservlets.com/JSF-Tutorial/jsf2/
+  -->
+
+  <application>
+    <!-- Define the resource bundle for internationalization and localization -->
+    <message-bundle>messages</message-bundle>
+  </application>
+
+  <!-- Navigation rule for login.xhtml -->
+  <navigation-rule>
+    <from-view-id>/login.xhtml</from-view-id>
+    <navigation-case>
+      <from-outcome>portfolio</from-outcome>
+      <to-view-id>/portfolio.xhtml</to-view-id>
+      <redirect />
+    </navigation-case>
+  </navigation-rule>
+
+  <!-- Navigation rule for portfolio.xhtml to createProject.xhtml -->
+  <navigation-rule>
+    <from-view-id>/portfolio.xhtml</from-view-id>
+    <navigation-case>
+      <from-outcome>createProject</from-outcome>
+      <to-view-id>/createProject.xhtml</to-view-id>
+    </navigation-case>
+  </navigation-rule>
+
+  <!-- Navigation rule for login.xhtml to register.xhtml -->
+  <navigation-rule>
+    <from-view-id>/login.xhtml</from-view-id>
+    <navigation-case>
+      <from-outcome>register</from-outcome>
+      <to-view-id>/register.xhtml</to-view-id>
+      <redirect />
+    </navigation-case>
+  </navigation-rule>
+
+  <!-- Navigation rule for portfolio.xhtml to editPortfolio.xhtml -->
+  <navigation-rule>
+    <from-view-id>/portfolio.xhtml</from-view-id>
+    <navigation-case>
+      <from-outcome>editPortfolio</from-outcome>
+      <to-view-id>/editPortfolio.xhtml</to-view-id>
+    </navigation-case>
+  </navigation-rule>
+
+  <!-- Navigation rule for register.xhtml to login.xhtml -->
+  <navigation-rule>
+    <from-view-id>/register.xhtml</from-view-id>
+    <navigation-case>
+      <from-outcome>login</from-outcome>
+      <to-view-id>/login.xhtml</to-view-id>
+      <redirect />
+    </navigation-case>
+  </navigation-rule>
+
+  <!-- Navigation rule for projectList.xhtml to project.xhtml -->
+  <navigation-rule>
+    <from-view-id>/projectList.xhtml</from-view-id>
+    <navigation-case>
+      <from-outcome>projectDetails</from-outcome>
+      <to-view-id>/project.xhtml</to-view-id>
+    </navigation-case>
+  </navigation-rule>
+</faces-config>

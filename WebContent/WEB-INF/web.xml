@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://java.sun.com/xml/ns/javaee"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         version="3.0">
+
+  <!-- Servlet declaration for JSF FacesServlet -->
+  <servlet>
+    <servlet-name>Faces Servlet</servlet-name>
+    <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+  </servlet>
+
+  <!-- Servlet mapping for JSF pages with .xhtml extension -->
+  <servlet-mapping>
+    <servlet-name>Faces Servlet</servlet-name>
+    <url-pattern>*.xhtml</url-pattern>
+  </servlet-mapping>
+
+  <!-- Context parameter to set the JSF project stage to Development -->
+  <context-param>
+    <param-name>javax.faces.PROJECT_STAGE</param-name>
+    <param-value>Development</param-value>
+  </context-param>
+
+  <!-- Context parameter to set the state saving method to client -->
+  <context-param>
+    <description>State saving method: 'client' or 'server' (default). See JSF Specification section 2.5.2</description>
+    <param-name>javax.faces.STATE_SAVING_METHOD</param-name>
+    <param-value>client</param-value>
+  </context-param>
+
+  <!-- Welcome file list for the application, prioritizing login.xhtml -->
+  <welcome-file-list>
+    <welcome-file>login.xhtml</welcome-file>
+    <welcome-file>index.jsf</welcome-file>
+    <welcome-file>welcome.jsf</welcome-file>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+
+  <!-- Database driver configuration -->
+  <context-param>
+    <param-name>jdbc.drivers</param-name>
+    <param-value>org.apache.derby.jdbc.EmbeddedDriver</param-value>
+  </context-param>
+
+  <!-- Configuration to reduce log level for TLD location cache -->
+  <context-param>
+    <param-name>org.apache.jasper.compiler.TldLocationsCache.level</param-name>
+    <param-value>ERROR</param-value>
+  </context-param>
+
+  <!-- Configuration to skip specific JARs during scanning to improve performance -->
+  <context-param>
+    <param-name>org.apache.tomcat.util.scan.StandardJarScanFilter.jarsToSkip</param-name>
+    <param-value>derbyLocale_zh_CN.jar, derbyLocale_zh_TW.jar, derbyLocale_cs.jar, derbyLocale_de_DE.jar, derbyLocale_es.jar, derbyLocale_fr.jar, derbyLocale_hu.jar</param-value>
+  </context-param>
+
+</web-app>

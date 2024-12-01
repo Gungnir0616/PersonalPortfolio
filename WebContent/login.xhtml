@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+    <title>Portfolio Application</title>
+    <div class="header">
+        <h1>Welcome to the Portfolio Application</h1>
+        <p>Create and manage your personal portfolio with ease.</p>
+    </div>
+    <h:outputStylesheet library="css" name="home.css"/>
+</h:head>
+<h:body>
+    <!-- Include header component -->
+    <ui:include src="header.xhtml"/>
+
+    <!-- Main content section -->
+    <div class="main-content">
+        <h:messages globalOnly="true" layout="table" styleClass="message-success" /> <!-- Add this line to display messages -->
+        <section class="auth-section">
+            <h2>Get Started</h2>
+            <div class="auth-form">
+                <h:form>
+                    <h:panelGrid columns="2" styleClass="login-form">
+                        <h:outputLabel for="username" value="Username:" styleClass="input-label"/>
+                        <h:inputText id="username" value="#{userBean.username}" placeholder="Enter your username" styleClass="input-field"/>
+                        <h:outputLabel for="password" value="Password:" styleClass="input-label"/>
+                        <h:inputSecret id="password" value="#{userBean.password}" placeholder="Enter your password" styleClass="input-field"/>
+                    </h:panelGrid>
+                    <div class="button-container">
+                        <h:commandButton value="Login" action="#{userBean.login}" styleClass="auth-button">
+                            <f:ajax render="@form" onevent="handleLogin"/>
+                        </h:commandButton>
+                        <h:commandButton value="Register" action="register" immediate="true" styleClass="auth-button"/>
+                    </div>
+                </h:form>
+            </div>
+            <p><a href="index.xhtml">Visit the Public Portfolio Application</a></p>
+        </section>
+    </div>
+
+    <!-- Include footer component -->
+    <ui:include src="footer.xhtml"/>
+</h:body>
+</html>

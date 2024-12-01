@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+    <title>User Portfolio</title>
+    <h:outputStylesheet library="css" name="styles.css"/>
+</h:head>
+<h:body>
+    <!-- Include header and navbar components -->
+    <ui:include src="header.xhtml"/>
+    <ui:include src="navbar.xhtml"/>
+
+    <header>
+        <!-- Display welcome message with user's full name -->
+        <h1>Welcome to #{portfolioBean.portfolio.fullname}'s Portfolio</h1>
+    </header>
+    <section class="top-section">
+        <div class="basic-info">
+            <!-- Display user's full name and email -->
+            <h2>#{portfolioBean.portfolio.fullname}</h2>
+            <p>Email: #{portfolioBean.portfolio.email}</p>
+            <!-- Display user's LinkedIn link -->
+            <p>LinkedIn: <a href="#{portfolioBean.portfolio.linkedin}">#{portfolioBean.portfolio.linkedin}</a></p>
+        </div>
+    </section>
+    <section class="bottom-section">
+        <!-- Display user's interests -->
+        <h3>Interests</h3>
+        <ul class="interests">
+            <ui:repeat value="#{portfolioBean.portfolio.interests.split(',')}" var="interest">
+                <li>#{interest}</li>
+            </ui:repeat>
+        </ul>
+        <!-- Display user's experience and skills -->
+        <h3>Experience and Skills</h3>
+        <p>#{portfolioBean.portfolio.experience}</p>
+        <!-- Display user's projects -->
+        <h3>My Projects</h3>
+        <ul id="project-list">
+            <ui:repeat value="#{projectBean.projects}" var="project">
+                <li>
+                    <h:link value="#{project.title}" outcome="project">
+                        <f:param name="projectId" value="#{project.id}"/>
+                    </h:link>
+                </li>
+            </ui:repeat>
+        </ul>
+        <!-- Link to create a new project -->
+        <h:link value="Create Project" outcome="createProject"/>
+        <!-- Display user's career goals -->
+        <h3>Career Goals</h3>
+        <p>#{portfolioBean.portfolio.careerGoals}</p>
+
+        <!-- Link to edit portfolio -->
+        <p>
+            <h:link value="Edit Portfolio" outcome="editPortfolio"/>
+        </p>
+
+        <!-- Log out button -->
+        <h:form>
+            <h:commandButton value="Log Out" action="#{userBean.logout}" styleClass="btn-logout"/>
+        </h:form>
+    </section>
+
+    <!-- Include footer component -->
+    <ui:include src="footer.xhtml"/>
+</h:body>
+</html>

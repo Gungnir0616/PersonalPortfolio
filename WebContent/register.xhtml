@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:head>
+    <title>Portfolio Application - Register</title>
+    <div class="header">
+        <h1>Welcome to the Portfolio Application</h1>
+        <p>Create and manage your personal portfolio with ease.</p>
+    </div>
+    <h:outputStylesheet library="css" name="home.css"/>
+</h:head>
+<h:body>
+    <!-- Include header component -->
+    <ui:include src="header.xhtml"/>
+
+    <!-- Main content section for the registration form -->
+    <div class="main-content">
+        <section class="auth-section">
+            <h2>Register</h2>
+            <div class="auth-form">
+                <!-- Registration form -->
+                <h:form>
+                    <h:panelGrid columns="2" styleClass="login-form">
+                        <h:outputLabel for="username" value="Username:" styleClass="input-label"/>
+                        <h:inputText id="username" value="#{registerBean.username}" placeholder="Enter your username" styleClass="input-field"/>
+
+                        <h:outputLabel for="email" value="Email:" styleClass="input-label"/>
+                        <h:inputText id="email" value="#{registerBean.email}" placeholder="Enter your email" styleClass="input-field"/>
+
+                        <h:outputLabel for="fullname" value="Full Name:" styleClass="input-label"/>
+                        <h:inputText id="fullname" value="#{registerBean.fullname}" placeholder="Enter your full name" styleClass="input-field"/>
+
+                        <h:outputLabel for="password" value="Password:" styleClass="input-label"/>
+                        <h:inputSecret id="password" value="#{registerBean.password}" placeholder="Enter your password" styleClass="input-field"/>
+
+                        <h:outputLabel for="confirmPassword" value="Confirm Password:" styleClass="input-label"/>
+                        <h:inputSecret id="confirmPassword" value="#{registerBean.confirmPassword}" placeholder="Confirm your password" styleClass="input-field"/>
+                    </h:panelGrid>
+                    <div class="button-container">
+                        <h:commandButton value="Register" action="#{registerBean.register}" styleClass="auth-button login-button"/>
+                        <h:commandButton value="Cancel" action="login?faces-redirect=true" immediate="true" styleClass="auth-button register-button"/>
+                    </div>
+                </h:form>
+            </div>
+        </section>
+    </div>
+
+    <!-- Include footer component -->
+    <ui:include src="footer.xhtml"/>
+</h:body>
+</html>
